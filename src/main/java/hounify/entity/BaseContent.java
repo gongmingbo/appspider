@@ -56,5 +56,4 @@ public class BaseContent implements Serializable {
     private String professionId;
     private String state;
     private boolean comment;
-	     
 }
