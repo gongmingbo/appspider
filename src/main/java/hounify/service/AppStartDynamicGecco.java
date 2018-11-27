@@ -28,7 +28,7 @@ public class AppStartDynamicGecco {
 	private ConfigurationRepository configurationRepository;
 	@Value("${timeNumber}")
 	private String timeNumber;
-	@Scheduled(cron ="0/60 * * * * *")
+	@Scheduled(cron ="0/120 * * * * *")
 	public void start() {
 		List<Configuration> configs = configurationRepository.findByState("1");
 		System.out.println(configs);
@@ -68,7 +68,7 @@ public class AppStartDynamicGecco {
 		.pipelineFactory(springPipelineFactory)
 		.classpath("hounify")
 		.start(urls)
-		.interval(3000)
+		.interval(1000*5)
 		.thread(urls.size()*2+1)
 		//.loop(true)
 		.start();

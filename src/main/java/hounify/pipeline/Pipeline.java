@@ -2,36 +2,20 @@ package hounify.pipeline;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.geccocrawler.gecco.annotation.PipelineName;
-import com.geccocrawler.gecco.dynamic.DynamicGecco;
 import com.geccocrawler.gecco.pipeline.JsonPipeline;
 import com.geccocrawler.gecco.request.HttpGetRequest;
 import com.geccocrawler.gecco.request.HttpRequest;
 import com.geccocrawler.gecco.scheduler.DeriveSchedulerContext;
-
-import hounify.Application;
 import hounify.entity.BaseContent;
 import hounify.entity.Configuration;
 import hounify.repository.ConfigurationRepository;
 import hounify.repository.ContentRepository;
-
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-
-import javax.annotation.Resource;
-import javax.management.Query;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Observable;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 /*
  * Created by gongmingbo on 2018/4/24.
@@ -46,12 +30,13 @@ public class Pipeline extends JsonPipeline {
 
     @Override
     public void process(JSONObject jo) {
-    	List<BaseContent> lists=contentRepository.findByContentOrigin("spider");
+    	
         HttpRequest currRequest = HttpGetRequest.fromJson(jo.getJSONObject("request"));
         String currURL = currRequest.getUrl();
         String id = currRequest.getParameter("id");
         Configuration config =
                 configurationRepository.findAllByIdAndState(Long.parseLong(id), "1");
+        List<BaseContent> lists=contentRepository.findByContentOrigin("spider");
         JSONObject jsonObject = new JSONObject(jo);
         // 返回json的数组
         JSONArray jsonArray = jsonObject.getJSONArray("name");

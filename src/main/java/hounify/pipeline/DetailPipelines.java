@@ -30,7 +30,7 @@ public class DetailPipelines extends JsonPipeline {
 
 	@Override
 	public void process(JSONObject jo) {
-		//List<BaseContent> lists = contentRepository.findByContentOrigin("spider");
+		List<BaseContent> lists = contentRepository.findByContentOrigin("spider");
 		++n;
 		System.out.println("详细页面====================" + n);
 		// System.out.println(jo);
@@ -48,7 +48,7 @@ public class DetailPipelines extends JsonPipeline {
 		content.setPublishTime(new Timestamp(new Date().getTime()));
 		content.setContentType("article");
 		content.setContentTag(JSON.toJSONString(config.getKeyWord().split(";")));
-		if (!StringUtils.isEmpty(title)) {
+		if (!StringUtils.isEmpty(title)&&!PiplineUntil.distinct(lists, title)) {
 			contentRepository.save(content);
 			System.out.println(JSON.toJSONString(config.getKeyWord()) + "保存成功====================" + n);
 
