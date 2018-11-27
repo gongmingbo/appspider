@@ -4,7 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import hounify.service.AppStart;
+import hounify.service.AppStartDynamicGecco;
 
 /**
  * Created by gongmingbo on 2018/5/7.
@@ -14,7 +14,7 @@ import hounify.service.AppStart;
 @Order(1)
 public class Scheduled implements CommandLineRunner {
     @Autowired
-    private AppStart appStart;
+    private AppStartDynamicGecco appStart;
     @Override
     public void run(String... args) throws Exception {
         //startPider.startSpider();

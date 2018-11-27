@@ -21,7 +21,7 @@ import com.geccocrawler.gecco.spring.SpringPipelineFactory;
 import hounify.entity.Configuration;
 import hounify.repository.ConfigurationRepository;
 @Service
-public class AppStart {
+public class AppStartDynamicGecco {
 	@Autowired
 	SpringPipelineFactory springPipelineFactory;
 	@Autowired
