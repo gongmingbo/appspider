@@ -28,7 +28,7 @@ public class AppStart {
 	private ConfigurationRepository configurationRepository;
 	@Value("${timeNumber}")
 	private String timeNumber;
-	@Scheduled(cron ="0/30 * * * * *")
+	@Scheduled(cron ="0/60 * * * * *")
 	public void start() {
 		List<Configuration> configs = configurationRepository.findByState("1");
 		System.out.println(configs);
@@ -59,7 +59,7 @@ public class AppStart {
 				//处理二级详细页面
 				DynamicGecco.html().gecco(new String[] {c.getSecondaryUrl() },  "myDownloder", 50000,"detailPipelines")
 				.requestField("request").request().build()
-				.stringField("detailContent").csspath(c.getDetailRule()).build()
+				.stringField("detailContent").csspath(c.getDetailCssPath()).build()
 				.register();
 			}
 			

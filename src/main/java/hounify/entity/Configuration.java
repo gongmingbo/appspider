@@ -21,9 +21,8 @@ public class Configuration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private long id;
-    private String uuid;
     /**
-     * 爬取地址
+     * 爬取地址一级地址
      */
     private String url;
     /**
@@ -33,7 +32,7 @@ public class Configuration {
     /**
      * 详细页面规则
      */
-    private String detailRule;
+    private String detailCssPath;
     /**
      * 自定义爬取规则 (自定义爬取一级地址)
      */

@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -47,9 +48,11 @@ public class DetailPipelines extends JsonPipeline {
 		content.setPublishTime(new Timestamp(new Date().getTime()));
 		content.setContentType("article");
 		content.setContentTag(JSON.toJSONString(config.getKeyWord().split(";")));
-		contentRepository.save(content);
-		System.out.println(JSON.toJSONString(config.getKeyWord()) + "保存成功====================" + n);
+		if (!StringUtils.isEmpty(title)) {
+			contentRepository.save(content);
+			System.out.println(JSON.toJSONString(config.getKeyWord()) + "保存成功====================" + n);
 
+		}		
 	}
 
 }

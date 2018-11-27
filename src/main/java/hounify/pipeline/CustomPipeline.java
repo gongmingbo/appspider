@@ -94,6 +94,7 @@ public class CustomPipeline extends JsonPipeline {
 			 while(matcherUrl.find()){
 					url=matcherUrl.group();		
 					}
+			 title=title.replaceAll(">|<", "");
 			 map.put("title", title);
 			 map.put("url", url);
 			 

@@ -61,6 +61,7 @@ public class Pipeline extends JsonPipeline {
                 JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                 String title = (String) jsonObject2.get("title");
                 String url = (String) jsonObject2.get("url");
+                System.out.println(url+title);
                 Map<String, String> map=new HashMap<String, String>();
                 map.put("id", id);
                 map.put("title", title);
