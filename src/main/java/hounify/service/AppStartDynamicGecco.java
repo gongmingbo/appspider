@@ -28,7 +28,7 @@ public class AppStartDynamicGecco {
 	private ConfigurationRepository configurationRepository;
 	@Value("${timeNumber}")
 	private String timeNumber;
-	@Scheduled(cron ="0/120 * * * * *")
+	@Scheduled(cron ="0 0/3 * * * *")
 	public void start() {
 		List<Configuration> configs = configurationRepository.findByState("1");
 		System.out.println(configs);
@@ -36,7 +36,7 @@ public class AppStartDynamicGecco {
 		if (configs.size() > 0) {
 			for (Configuration c : configs) {
 				HttpRequest request = new HttpGetRequest(c.getUrl());
-				request.addParameter("id", c.getId()+"");
+				request.addParameter("configId", c.getId()+"");
 				urls.add(request);
 				if (c.getCssPath().endsWith("a")) {
 					DynamicGecco.html().gecco(new String[] { c.getUrl() },  "myDownloder", 50000, "newPipelines")

@@ -37,9 +37,9 @@ public class CustomPipeline extends JsonPipeline {
 	public void process(JSONObject jo) {
 		System.out.println(jo);
 		HttpRequest currRequest = HttpGetRequest.fromJson(jo.getJSONObject("request"));
-		String id = currRequest.getParameter("id");
+		String configId = currRequest.getParameter("configId");
 		String currURL = currRequest.getUrl();
-		Configuration c = configurationRepository.findAllByIdAndState(Long.parseLong(id), "1");
+		Configuration c = configurationRepository.findAllByIdAndState(Long.parseLong(configId), "1");
 		List<BaseContent> lists=contentRepository.findByContentOrigin("spider");
 		JSONObject jsonObject = new JSONObject(jo);
 		// 返回json的数组
@@ -59,7 +59,7 @@ public class CustomPipeline extends JsonPipeline {
 						}
 						System.out.println("url---------"+url+title);
 						if (!PiplineUntil.distinct(lists, title)) {
-							map.put("id", id);
+							map.put("configId", configId);
 							currRequest.setParameters(map);
 							DeriveSchedulerContext.into(currRequest.subRequest(url));
 						}						

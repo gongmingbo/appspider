@@ -33,9 +33,9 @@ public class Pipeline extends JsonPipeline {
     	
         HttpRequest currRequest = HttpGetRequest.fromJson(jo.getJSONObject("request"));
         String currURL = currRequest.getUrl();
-        String id = currRequest.getParameter("id");
+        String configId = currRequest.getParameter("configId");
         Configuration config =
-                configurationRepository.findAllByIdAndState(Long.parseLong(id), "1");
+                configurationRepository.findAllByIdAndState(Long.parseLong(configId), "1");
         List<BaseContent> lists=contentRepository.findByContentOrigin("spider");
         JSONObject jsonObject = new JSONObject(jo);
         // 返回json的数组
@@ -48,7 +48,7 @@ public class Pipeline extends JsonPipeline {
                 String url = (String) jsonObject2.get("url");
                 System.out.println(url+title);
                 Map<String, String> map=new HashMap<String, String>();
-                map.put("id", id);
+                map.put("configId", configId);
                 map.put("title", title);
                 currRequest.setParameters(map);
                 if (title.matches(getKeyWord(config.getKeyWord()))) {
@@ -71,10 +71,5 @@ public class Pipeline extends JsonPipeline {
 		String keys2 = keyWord.replaceAll(";|；", ".*");
 		return keys2;
 
-	}
-	public static void main(String[] args) {
-		String reg=getKeyWord("中国");
-		String string="我校举办第八届本科非师范专业学生专业技能展示活动";
-		System.out.println(string.matches(reg));
 	}
 }

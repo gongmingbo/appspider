@@ -36,9 +36,9 @@ public class DetailPipelines extends JsonPipeline {
 		// System.out.println(jo);
 		HttpRequest currRequest = HttpGetRequest.fromJson(jo.getJSONObject("request"));
 		//String currURL = currRequest.getUrl();
-		String id = currRequest.getParameter("id");
+		String configId = currRequest.getParameter("configId");
 		String title = currRequest.getParameter("title");
-		Configuration config = configurationRepository.findAllByIdAndState(Long.parseLong(id), "1");
+		Configuration config = configurationRepository.findAllByIdAndState(Long.parseLong(configId), "1");
 		BaseContent content = new BaseContent();
 		content.setContenBody(jo.getString("detailContent"));
 		content.setContentTitle(title);
