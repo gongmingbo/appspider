@@ -44,6 +44,7 @@ public class BaseContent implements Serializable {
     @Type(type = "JsonDataUserType")
     @Column(columnDefinition = "jsonb")
     private String contentTag;
+    @Column(columnDefinition = "text")
     private String contentTitleImage;
     private boolean contentAttachment;
     private Integer readCounts;
