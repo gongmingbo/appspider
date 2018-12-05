@@ -1,10 +1,14 @@
 package hounify.service;
 
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.eclipse.jetty.util.security.Credential.MD5;
+import org.postgresql.util.MD5Digest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -28,7 +32,7 @@ public class AppStartDynamicGecco {
 	private ConfigurationRepository configurationRepository;
 	@Value("${timeNumber}")
 	private String timeNumber;
-	@Scheduled(cron ="0 0/3 * * * *")
+	@Scheduled(cron ="0 0/1 * * * *")
 	public void start() {
 		List<Configuration> configs = configurationRepository.findByState("1");
 		System.out.println(configs);
@@ -91,5 +95,4 @@ public class AppStartDynamicGecco {
 				}
 			}, 5000, time);
 	}
-	
 }
