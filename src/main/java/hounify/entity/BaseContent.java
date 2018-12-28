@@ -47,7 +47,8 @@ public class BaseContent implements Serializable {
     @Column(columnDefinition = "text")
     private String contentTitleImage;
     private boolean contentAttachment;
-    private Integer readCounts;
+    private int readCounts;
+    private int likeCount;
     private String contentTop;
     private String remark;
     @OneToMany
