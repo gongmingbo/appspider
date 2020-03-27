@@ -5,5 +5,8 @@ import java.util.List;
 
     public interface Test {
        void insert(List<BaseContent> list);
+
+       System.o
+
     }
 
